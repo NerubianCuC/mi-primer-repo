@@ -1,0 +1,10 @@
+{{#each usuarios }}
+    <article class="card mb-2">
+    <div class="card-body">
+        <p>{{userName}}</p>
+        <p>{{emai}}</p>
+        <a href="/Usuarios/eliminar/{{_id}}" class="btn btn-danger">Eliminar</a>
+    </div>
+ </article>
+{{/each}}
+

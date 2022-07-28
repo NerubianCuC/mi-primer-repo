@@ -1,0 +1,16 @@
+const express= require("express")
+const {body} = require('express-validator')
+const { leerUrls, agregarUrl, eliminarUrl, editarURLForm, editarURL, redireccionamiento } = require("../controllers/homeController")
+const { formPerfil } = require("../controllers/perfilController")
+const urlValidar = require("../middlewares/urlValida")
+const verificarUser = require("../middlewares/verificarUser")
+const router = express.Router()
+router.get("/",verificarUser, leerUrls)
+router.post("/",verificarUser,[body("origin", "Ingrese una Url Correcta").trim().isURL()],/*urlValidar,*/ agregarUrl)
+router.get("/eliminar/:id",verificarUser, eliminarUrl)
+router.get("/editar/:id",verificarUser, editarURLForm)
+router.post("/editar/:id",verificarUser, urlValidar,editarURL)
+router.get("/:shortUrl", redireccionamiento)
+router.get("/perfiles", formPerfil)
+
+module.exports= router
