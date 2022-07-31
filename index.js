@@ -21,14 +21,15 @@ const corsOption ={
 }
 app.use(cors())
 app.use(session({
-    secret: 'nerubian dota',
+    secret: process.env.secretsession,
     resave: false,
     saveUninitialized: false,
     name : "secret-name-nerubian",
     store:MongoStorage.create({
         clientPromise: clientDB,
-        dbName: 'dbTwiter'
-    })
+        dbName: process.env.dbName
+    }),
+    cookie:{secure: process.env.modo=== "production", maxAge:30*24*60*60*1000}
 }))
 app.use(flash())
 app.use(passport.initialize())
