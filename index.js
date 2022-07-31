@@ -50,12 +50,12 @@ app.set("views", "./views")// y que las plantillas van a estar dentro de la carp
 app.use(express.static(__dirname + "/public")) // para conectar con el frontend
 app.use(express.urlencoded({extended: true})) // para ver lo que trae el metodo post
 app.use(csrf())
-app.use(mongoSanitize());
-app.use((req,res,next)=>{
+ app.use((req,res,next)=>{
     res.locals.csrfToken = req.csrfToken()
     res.locals.mensajes = req.flash("mensajes")
     next()
-})
+}) 
+app.use(mongoSanitize());
 app.use("/", require("./routes/home")) // para llamar a los archivos que estan en la carpeta routes
 app.use("/auth", require("./routes/auth"))
 app.use("/Usuarios", require("./routes/Usuarios"))

@@ -91,8 +91,8 @@ req.login(user,function(err){
 }
 const cerrarSesion = (req,res)=>{
     if(req.isAuthenticated()){
-       req.logout(function(err){
-        if(err) throw new Error("Error al cerrar la sesion")
+       req.logout(function(){
+        //if(err) throw new Error("Error al cerrar la sesion")
     })
     return res.redirect('/auth/login') 
        
